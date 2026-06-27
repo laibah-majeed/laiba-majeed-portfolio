@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #f5f3ef;
+    --bg2: #eceae4;
+    --surface: #ffffff;
+    --surface2: #f0ede7;
+    --border: #d4cfc6;
+    --text: #1a1815;
+    --text2: #4a4640;
+    --text3: #7a746c;
+    --accent: #c8860a;
+    --accent-light: #f5a623;
+    --accent-bg: rgba(200,134,10,0.08);
+  }
+  .dark {
+    --bg: #0a0a0b;
+    --bg2: #111113;
+    --surface: #1a1a1e;
+    --surface2: #242428;
+    --border: #2e2e34;
+    --text: #f0ede7;
+    --text2: #b8b3ab;
+    --text3: #6b6560;
+    --accent: #f59e0b;
+    --accent-light: #fbbf24;
+    --accent-bg: rgba(245,158,11,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #0a0a0b;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+}
+
+@layer components {
+  .section-pad { @apply py-24 lg:py-32; }
+  .container-max { @apply max-w-7xl mx-auto px-6 lg:px-12; }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 font-mono font-medium text-sm
+    bg-amber-500 text-black rounded-none border-2 border-amber-500
+    hover:bg-transparent hover:text-amber-500 transition-all duration-300
+    tracking-wider uppercase;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 font-mono font-medium text-sm
+    bg-transparent border-2 border-current rounded-none
+    hover:bg-amber-500 hover:text-black hover:border-amber-500 transition-all duration-300
+    tracking-wider uppercase;
+  }
+
+  .noise-overlay {
+    position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl;
+  }
+
+  .line-accent {
+    @apply w-12 h-0.5 bg-amber-500;
+  }
+
+  .tag {
+    @apply inline-block px-2.5 py-1 font-mono text-xs border border-current
+    rounded-sm tracking-wide;
+  }
+}
